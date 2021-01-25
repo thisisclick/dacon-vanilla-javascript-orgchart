@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>Web Pack Chart</title>
+
+    <script type="text/javascript" src="./js/deconchart.js"></script>
+    <link
+      href="./css/deconchart.css"
+      media="screen"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <script type="text/javascript">
+      var control;
+      document.addEventListener('DOMContentLoaded', function () {
+        var options = new primitives.OrgConfig();
+
+        var items = [
+          {
+            id: 0,
+            parent: null,
+            title: 'Mallika Kaekla',
+            description: 'Cheif Exeutive Officer.',
+            image: './images/person.svg',
+          },
+          {
+            id: 1,
+            parent: 0,
+            itemType: primitives.ItemType.Adviser,
+            adviserPlacementType: primitives.AdviserPlacementType.Right,
+            title: 'Martin Stuvik',
+            description: 'Executive Director',
+            image: './images/person.svg',
+          },
+          {
+            id: 2,
+            parent: 0,
+            itemType: primitives.ItemType.SubAssistant,
+            adviserPlacementType: primitives.AdviserPlacementType.Left,
+            title: 'Jarno De Jong',
+            description: 'Corporate Technical Director',
+            image: './images/person.svg',
+          },
+          {
+            id: 3,
+            parent: 0,
+            itemType: primitives.ItemType.SubAssistant,
+            adviserPlacementType: primitives.AdviserPlacementType.Right,
+            title: 'Dr.Nikitin Konstantin',
+            description: 'R&D Executive',
+            image: './images/person.svg',
+          },
+
+          {
+            id: 4,
+            parent: 0,
+            title: 'Varapong J.',
+            description: 'Chief Operation Officer',
+            image: './images/person.svg',
+          },
+          {
+            id: 5,
+            parent: 4,
+            groupTitle: 'Operations Dept.',
+            title: 'Apaporn N.',
+            description: 'Operation Dept. Mgr.',
+            image: './images/person.svg',
+          },
+          {
+            id: 6,
+            parent: 4,
+            groupTitle: 'Technical Dept.',
+            title: 'David K.',
+            description: 'Technical Dept.',
+            image: './images/person.svg',
+          },
+          {
+            id: 7,
+            parent: 0,
+            title: 'Jarno De Jong',
+            description: 'Chief Pipeline Officer',
+            image: './images/person.svg',
+          },
+          {
+            id: 8,
+            parent: 7,
+            groupTitle: 'Pipeline Services Dept.',
+            title: 'Sid W. J.',
+            description: 'Pipeline Services Dept. Mgr.',
+            image: './images/person.svg',
+          },
+          {
+            id: 9,
+            parent: 7,
+            groupTitle: 'Pipeline Services Dept.',
+            title: 'Kraiwan A.',
+            description: 'Deputy Pipeline Services Dept. Mgr.',
+            image: './images/person.svg',
+          },
+          {
+            id: 10,
+            parent: 0,
+            title: 'Sunantha M.',
+            description: 'Chief Operation Officer',
+            image: './images/person.svg',
+          },
+          {
+            id: 11,
+            parent: 10,
+            groupTitle: 'Humen Resource and Admin',
+            title: 'Sunantha M',
+            description: 'HRA Dept. Mgr.',
+            image: './images/person.svg',
+          },
+          {
+            id: 12,
+            parent: 10,
+            title: 'Sirirat T.',
+            description: 'BOI & Govermment Affairs Specialist',
+            image: './images/person.svg',
+          },
+          {
+            id: 13,
+            parent: 10,
+            title: 'Sarunyu K.',
+            description: 'SAP Specialist',
+            image: './images/person.svg',
+          },
+          {
+            id: 14,
+            parent: 10,
+            groupTitle: 'Quality & Safety Mgrs. Dept.',
+            title: 'Kammarat W.',
+            description: 'HRA Dept. Mgr.',
+            image: './images/person.svg',
+          },
+          {
+            id: 15,
+            parent: 10,
+            groupTitle: 'Procurement Dept.',
+            title: 'Pavarisa K.',
+            description: 'Acting Procurement Dept. Mgr.',
+            image: './images/person.svg',
+          },
+          {
+            id: 16,
+            parent: 0,
+            title: 'Mohammed Ilyas',
+            description: 'Chief Sale Officer',
+            image: './images/person.svg',
+          },
+          {
+            id: 18,
+            parent: 16,
+            groupTitle: 'Procurement Dept.',
+            title: 'Aparanee A.',
+            description: 'Domestic Sales Dept. Mgr.',
+            image: './images/person.svg',
+          },
+          {
+            id: 19,
+            parent: 16,
+            title: 'Koramest K.',
+            description:
+              'Deputy Chief Commercial and Regional Sales Officer (S.E.A) Dept.',
+            image: './images/person.svg',
+          },
+          {
+            id: 20,
+            parent: 19,
+            groupTitle: 'Commercial and Regional Sales (S.E.A) Dept.',
+            title: 'Koramest K.',
+            description: 'Commercial and Regional Sales (S.E.A) Dept. Mgr.',
+            image: './images/person.svg',
+          },
+          {
+            id: 21,
+            parent: 16,
+            title: '(Vacant)',
+            groupTitle: 'Markeing Dept.',
+            description: 'Markeing Dept. Mgr.',
+            image: './images/person.svg',
+          },
+          {
+            id: 22,
+            parent: 0,
+            title: 'Dr. Ardisak B.',
+            description: 'Chief Financial Officer',
+            image: './images/person.svg',
+          },
+          {
+            id: 23,
+            parent: 22,
+            title: 'Podjana C.',
+            groupTitle: 'Finance & Accounting Dept.',
+            description: 'Accounting Dept. Mgr.',
+            image: './images/person.svg',
+          },
+          {
+            id: 24,
+            parent: 0,
+            title: 'Martin Stuvik',
+            description: 'Chief RD&E Officer',
+            image: './images/person.svg',
+          },
+          {
+            id: 25,
+            parent: 24,
+            title: 'Vitoon D.',
+            groupTitle: 'Engineering Dept.',
+            description: 'Engineering Dept. Mgr.',
+            image: './images/person.svg',
+          },
+          {
+            id: 26,
+            parent: 24,
+            title: 'Nattapong S.',
+            groupTitle: 'Engineering Dept.',
+            description: 'Sr. Production Dept. Mgr.',
+            image: './images/person.svg',
+          },
+          {
+            id: 27,
+            parent: 28,
+            itemType: primitives.ItemType.GeneralPartner,
+            adviserPlacementType: primitives.AdviserPlacementType.Left,
+            title: 'Dr. Kirkpong',
+            groupTitle: 'R&D Dept.',
+            description: 'Software Development Dept. Mgr.',
+            image: './images/person.svg',
+          },
+          {
+            id: 28,
+            parent: 24,
+            title: 'Thongrob S.',
+            groupTitle: 'R&D Dept.',
+            description: 'Electronic Dept. Mgr.',
+            image: './images/person.svg',
+          },
+          {
+            id: 29,
+            parent: 28,
+            itemType: primitives.ItemType.GeneralPartner,
+            adviserPlacementType: primitives.AdviserPlacementType.Right,
+            title: 'Vitoon',
+            groupTitle: 'R&D Dept.',
+            description: 'Mechanical Development Dept. Mgr.',
+            image: './images/person.svg',
+          },
+          {
+            id: 30,
+            parent: 28,
+            title: 'Levi P.',
+            description: 'Project Mgr.',
+            image: './images/person.svg',
+          },
+          {
+            id: 31,
+            parent: 30,
+            title: 'Saifon P.',
+            description: 'RDE Project and Management Syatem Mgr.',
+            image: './images/person.svg',
+          },
+
+          {
+            id: 32,
+            parent: 0,
+            itemType: primitives.ItemType.SubAssistant,
+            adviserPlacementType: primitives.AdviserPlacementType.right,
+            isVisible: false,
+          },
+
+          {
+            id: 33,
+            parent: 32,
+            groupTitle: 'Software Management Dept.',
+            title: 'Saifon P.',
+            description: 'Software Management Dept. Mgr.',
+            image: './images/person.svg',
+          },
+
+          {
+            id: 34,
+            parent: 33,
+            title: 'Cattreeya S.',
+            description: 'Fire Maker Developer Specialist',
+            image: './images/person.svg',
+          },
+
+          {
+            id: 35,
+            parent: 33,
+            title: 'Acharawadee L.',
+            description: 'Fire Maker Developer Specialist',
+            image: './images/person.svg',
+          },
+        ];
+
+        var annotations = [
+          {
+            annotationType: primitives.AnnotationType.Connector,
+            fromItem: 4,
+            toItem: 2,
+            color: primitives.Colors.Green,
+            offset: 0,
+            lineWidth: 2,
+            lineType: primitives.LineType.Dashed,
+            connectorPlacementType: primitives.ConnectorPlacementType.Offbeat,
+            connectorShapeType: primitives.ConnectorShapeType.OneWay,
+          },
+          {
+            annotationType: primitives.AnnotationType.Connector,
+            fromItem: 24,
+            toItem: 3,
+            color: primitives.Colors.Green,
+            offset: 0,
+            lineWidth: 2,
+            lineType: primitives.LineType.Dashed,
+            connectorPlacementType: primitives.ConnectorPlacementType.Offbeat,
+            connectorShapeType: primitives.ConnectorShapeType.OneWay,
+          },
+          {
+            annotationType: primitives.AnnotationType.Connector,
+            fromItem: 21,
+            toItem: 1,
+            color: primitives.Colors.Green,
+            offset: 0,
+            lineWidth: 2,
+            lineType: primitives.LineType.Dashed,
+            connectorPlacementType: primitives.ConnectorPlacementType.Offbeat,
+            connectorShapeType: primitives.ConnectorShapeType.OneWay,
+          },
+
+          {
+            annotationType: primitives.AnnotationType.Connector,
+            fromItem: 33,
+            toItem: 1,
+            color: primitives.Colors.Green,
+            offset: 0,
+            lineWidth: 2,
+            lineType: primitives.LineType.Dashed,
+            connectorPlacementType: primitives.ConnectorPlacementType.Offbeat,
+            connectorShapeType: primitives.ConnectorShapeType.OneWay,
+          },
+        ];
+
+        options.items = items;
+        options.annotations = annotations;
+        options.onItemRender = onTemplateRender;
+        options.pageFitMode = primitives.PageFitMode.Auto;
+        options.graphicsType = primitives.GraphicsType.Auto;
+        options.hasSelectorCheckbox = primitives.Enabled.False;
+        options.cursorItem = 0;
+        options.normalLevelShift = 20;
+        options.dotLevelShift = 10;
+        options.lineLevelShift = 50;
+        options.normalItemsInterval = 20;
+        options.dotItemsInterval = 10;
+        options.lineItemsInterval = 5;
+
+        options.placeAssistantsAboveChildren = false;
+
+        control = primitives.OrgDiagram(
+          document.getElementById('basicdiagram'),
+          options
+        );
+      });
+
+      function onTemplateRender(event, data) {
+        switch (data.renderingMode) {
+          case primitives.RenderingMode.Create:
+            /* Initialize template content here */
+            break;
+
+          case primitives.RenderingMode.Update:
+            /* Update template content here */
+            break;
+        }
+
+        var itemConfig = data.context;
+        var element = data.element;
+
+        if (data.templateName == 'DepartmentTitleTemplate') {
+          element.firstChild.style.backgroundColor =
+            itemConfig.itemTitleColor || primitives.Colors.RoyalBlue;
+          element.firstChild.firstChild.textContent = itemConfig.title;
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="basicdiagram" style="width: 100vw; height: 100vh"></div>
+  </body>
+</html>
